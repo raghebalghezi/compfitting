@@ -2,6 +2,8 @@ Compositional Enhancement of Word Embeddings
 
 A post-processing, unsupervised method to improve word embeddings using semantic and etymological ontology. 
 
+Please start with compofitting.py.
+
 
 Prereqs:
 1. A word embedding file (preferably GloVe) to be placed in the root dir under name of "glove.6B.300d.txt".
