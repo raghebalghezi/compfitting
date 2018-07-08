@@ -10,7 +10,7 @@ from retrofit import *
 from web.evaluate import evaluate_on_all
 from counterfitting import *
 
-original_word_Vector = extract('glove.6B/glove.6B.300d.txt') #dict of glove
+original_word_Vector = extract('glove.6B.300d.txt') #dict of glove
 
 #retrofitting
 wordVecs = read_word_vecs('glove.6B.300d.txt') #Read all the word vectors and normalize them
@@ -21,7 +21,7 @@ retrofitted_word_vector = retrofit(wordVecs, lexicon, 10)
 counterfitted_word_vector = counter_fit()
 
 #retrofitting AND counterfitting
-#result_retro_counter = retrofit(counterfitted_word_vector, lexicon, 10)
+result_retro_counter = retrofit(counterfitted_word_vector, lexicon, 10)
 
 #evaluation
 results_original = evaluate_on_all(original_word_Vector) #evaluate original vectors
