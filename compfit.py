@@ -17,7 +17,7 @@ syn_dict = dict() #synonyms
 ant_dict = dict() #antonyms
 
 print("Loading data...")
-with open('../glove.6B/glove.6B.300d.txt','r',encoding="utf-8") as f:
+with open('./linguistic_constraints/glove.6B.300d.txt','r',encoding="utf-8") as f:
     for line in f:
     	v = np.float32(line.split()[1:])
     	word_vectors[line.split()[0].strip()] = v/np.linalg.norm(v)
@@ -26,11 +26,11 @@ with open("./linguistic_constraints/compositional.txt",'r',encoding="utf-8") as 
     for line in file:
         compositional_dict[line.split()[0].strip()]=line.split()[1].strip().split(",")
         
-with open("../lexicons/wordnet-synonyms+.txt",'r',encoding="utf-8") as file:
+with open("./linguistic_constraints/wordnet-synonyms+.txt",'r',encoding="utf-8") as file:
     for line in file:
         syn_dict[line.strip().split()[0]] = line.strip().split()[1:]
 
-with open("../lexicons/data/wordnet_antonyms.txt",'r',encoding="utf-8") as file:
+with open("./linguistic_constraints/wordnet_antonyms.txt",'r',encoding="utf-8") as file:
     for line in file:
         ant_dict[line.strip().split()[0]] = line.strip().split()[1:]
 
