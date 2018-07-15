@@ -34,7 +34,23 @@ with open("./linguistic_constraints/wordnet_antonyms.txt",'r',encoding="utf-8") 
     for line in file:
         ant_dict[line.strip().split()[0]] = line.strip().split()[1:]
 
-def compoFitting(X, syn_dict,ant_dict,compositional_dict, n_iter=100):
+def compoFitting(X, syn_dict,ant_dict,compositional_dict, n_iter=10):
+    '''
+    Enhances Word vector (GloVe) using synonyms, antonyms and etymological components.
+    ==================================================================================
+    
+    X: Distribuational Vector
+    syn_dict: dictionary of key(word):values(list of synonyms) from WordNet
+    ant_dict: dictionary of key(word):values(list of antonyms) from WordNet
+    compositional_dict: dictionary of key(word):values(list of components) from Wiktionary.org
+    alpha: distributional preservation weight. Ideally, it should be 1.
+    beta: synonym vector weight. Should be 1/len(neighbors) ?
+    gamma: antonym vector weight. Should be zero as we want to repel from antonyms ? 
+    delta: compositional weight. set to 1, but the ideal value is unknown.
+    n_iter: Number of iteration, defaulted to 10
+    
+    Returns : Dictionary of ComFitted Vectors
+    '''
     
     Y = X.copy() #intialize w/ X vectors
     Y_prev = Y.copy()
