@@ -38,7 +38,12 @@ def compoFitting(X, syn_dict,ant_dict,compositional_dict, n_iter=10):
     '''
     Enhances Word vector (GloVe) using synonyms, antonyms and etymological components.
     ==================================================================================
-    
+    NOTE: This represents the online update (partial derivative of the objective function w.r.t q_i, and after equating to zero, 
+    we get the following update:
+    q_i = \frac{\sum_{j : (i,j) \in SYN} \beta_{ij} q_j + \alpha_i
+  \hat{q_i} +\sum_{r : (i,r) \in ANT} \gamma_{ir} q_r + \sum_{c : (i,c) \in COMP} \delta_{ic} \sum_{1:(c)}q_c } 
+{\sum_{j : (i,j) \in SYN} \beta_{ij} + \sum_{r : (i,r) \in ANT} \gamma_{ir} + \sum_{c : (i,c) \in COMP} \delta_{ic} + \alpha_i}
+
     X: Distribuational Vector
     syn_dict: dictionary of key(word):values(list of synonyms) from WordNet
     ant_dict: dictionary of key(word):values(list of antonyms) from WordNet
@@ -61,6 +66,7 @@ def compoFitting(X, syn_dict,ant_dict,compositional_dict, n_iter=10):
     #normalize = lambda x:(x/np.linalg.norm(x)) + 1e-6
 
     for iteration in range(1, n_iter+1):
+        
         for idx,word in enumerate(X):
             try:
                 t1 = X[word] * alpha(word)
