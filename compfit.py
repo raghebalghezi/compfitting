@@ -73,7 +73,7 @@ def compoFitting(X, syn_dict,ant_dict,compositional_dict, n_iter=10):
                 t1 = t1 + np.array([Y_prev[j] * beta(word) for j in syn_dict[word]]).sum(axis=0)
                 t2 = t1 + np.array([Y_prev[r] * gamma(word) for r in ant_dict[word]]).sum(axis=0)
                 t3 = t2 + np.array([Y_prev[c] for c in compositional_dict[word]]).sum(axis=0)
-                Y_prev[word] = t3/( beta(word) + alpha(word) + gamma(word) + delta(word)
+                Y_prev[word] = t3/( beta(word) + alpha(word) + gamma(word) + delta(word))
                 return Y_prev      
             except KeyError:
                 pass
