@@ -74,10 +74,10 @@ def compoFitting(X, syn_dict,ant_dict,compositional_dict, n_iter=10):
                 t2 = t1 - np.array([Y_prev[r] * gamma(word) for r in ant_dict[word]]).sum(axis=0)
                 t3 = t2 + np.array([Y_prev[c] for c in compositional_dict[word]]).sum(axis=0)
                 Y_prev[word] = t3/( beta(word) + alpha(word) + gamma(word) + delta(word))
-                return Y_prev      
+    
             except KeyError:
                 pass
-
+    return Y_prev 
 
 retrofitted_word_vector = compoFitting(word_vectors, syn_dict,ant_dict,compositional_dict, n_iter=10)
 results_original = evaluate_on_all(word_vectors) #evaluate original vectors
